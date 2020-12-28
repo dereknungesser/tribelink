@@ -22,14 +22,31 @@ function Navigation({ isLoaded }){
     );
   }
 
-  return (
-    <ul>
-      <li>
+  if (sessionUser) {
+    return (
+      <div>
+        <div>
+          {isLoaded && sessionLinks}
+        </div>
+        <div>
+          <NavLink to="/messageboard">Message Board</NavLink>
+        </div>
+        <div>
+          <NavLink to="/schedule">Schedule</NavLink>
+        </div>
+        <div>
+          <NavLink to="/event">Events</NavLink>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
-  );
+      </div>
+    )
+  }
 }
 
 export default Navigation;
