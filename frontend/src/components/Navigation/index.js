@@ -24,11 +24,8 @@ function Navigation({ isLoaded }){
 
   if (sessionUser) {
     return (
-      <div>
-        <div>
-          {isLoaded && sessionLinks}
-        </div>
-        <div>
+      <div className="links">
+        <div className="messageboard">
           <NavLink to="/messageboard">Message Board</NavLink>
         </div>
         <div>
@@ -37,14 +34,23 @@ function Navigation({ isLoaded }){
         <div>
           <NavLink to="/event">Events</NavLink>
         </div>
+        <div>
+          {isLoaded && sessionLinks}
+        </div>
+        <h3>{sessionUser.username}</h3>
       </div>
     );
   } else {
     return (
-      <div>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </div>
+      <>
+        <div className="links">
+          <div>
+          <NavLink exact to="/">Home</NavLink>
+          {isLoaded && sessionLinks}
+          </div>
+        </div>
+        <h1>Please sign in!</h1>
+      </>
     )
   }
 }
