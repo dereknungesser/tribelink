@@ -11,6 +11,7 @@ const MessageBoard = () => {
         const payload = {
             body,
         };
+        let createdMessage = await dispatch(createMessage(payload))
     }
 
 
