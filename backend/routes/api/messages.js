@@ -1,6 +1,12 @@
-const MessagesRepository = require('../../db/messages-repository');
+const Messages = require('../../db/models')
+
+async function list() {
+  return await Messages.findAll();
+}
 
 router.get('/', asyncHandler(async function(_req, res) {
-        const pokemon = await MessagesRepository.list();
-        return res.json(pokemon);
-      }));
+        const message = await Messages.list();
+        return res.json(message);
+}));
+
+module.exports = { list };

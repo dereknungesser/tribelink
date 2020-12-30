@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Schedule from "./components/Schedule";
 import MessageBoard from "./components/MessageBoard";
 import Event from "./components/Event";
+import { getMessages } from './store/message';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,6 +15,10 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getMessages());
+  }, [dispatch])
 
   return (
     <>
