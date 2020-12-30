@@ -23,10 +23,10 @@ export const getMessages = () => async dispatch => {
 export const createMessage = (createdMessage) => async dispatch => {
   const response = await fetch(`/api/messages`, {
     method: 'POST',
-    // headers: {
-    //   'Content-Type': 'application/json'
-    // },
-    body: JSON.stringify(createdMessage)
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({createdMessage})
   });
 
   if(response.ok){

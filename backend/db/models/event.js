@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     body: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     scheduleId: DataTypes.INTEGER,
-    startTime: DataTypes.INTEGER,
-    endTime: DataTypes.INTEGER
+    startTime: DataTypes.DATE,
+    endTime: DataTypes.DATE
   }, {});
   Event.associate = function(models) {
     Event.belongsTo(models.User, { foreignKey: 'userId' })
