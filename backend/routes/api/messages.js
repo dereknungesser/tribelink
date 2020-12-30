@@ -1,12 +1,16 @@
-const Messages = require('../../db/models')
+const express = require('express');
+const router = express.Router();
 
-async function list() {
-  return await Messages.findAll();
-}
+const { MessageBoard } = require('../../db/models')
 
-router.get('/', asyncHandler(async function(_req, res) {
-        const message = await Messages.list();
-        return res.json(message);
-}));
+router.get('/', async (req, res, next) => {
+  try {
+    const messagesList = await MessageBoard.findAll()
+    console.log(messagesList)
+    res.json({messagesList: messagesList});
+  } catch (e) {
+    next(e);
+  };
+});
 
-module.exports = { list };
+module.exports = router;
