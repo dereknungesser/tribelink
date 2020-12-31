@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const csrf = require('csurf')
+
 const csrfProtection = csrf({ cookie: true });
 
 const { MessageBoard } = require('../../db/models')
+
+router.post('/', csrfProtection, async (req, res) => {
+    const createdMessage = await MessageBoard.create(req.body)
+    console.log(createdMessage)
+    res.json(createdMessage)
+});
 
 router.get('/', async (req, res, next) => {
   try {
@@ -12,15 +19,6 @@ router.get('/', async (req, res, next) => {
     res.json({messagesList: messagesList});
   } catch (e) {
     next(e);
-  };
-});
-
-router.post('/', csrfProtection, async (req, res, next) => {
-  try {
-    const createdMessage = await MessageBoard.create(req.body)
-    return res.json(createdMessage)
-  } catch (e) {
-    next(e)
   };
 });
 

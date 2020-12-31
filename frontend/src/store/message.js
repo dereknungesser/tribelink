@@ -6,7 +6,7 @@ const load = list => ({
     list,
 });
 
-const addOneMessage = message => ({
+const addMessage = message => ({
   type: ADD_ONE,
   message,
 });
@@ -26,12 +26,12 @@ export const createMessage = (createdMessage) => async dispatch => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({createdMessage})
+    body: JSON.stringify(createdMessage)
   });
 
   if(response.ok){
     const message = await response.json()
-    dispatch(addOneMessage(message))
+    dispatch(addMessage(message))
     return message
   }
 }
