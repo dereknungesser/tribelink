@@ -1,0 +1,9 @@
+.createEvent > form {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 15%;
+}

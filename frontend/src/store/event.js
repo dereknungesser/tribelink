@@ -1,8 +1,16 @@
-const LOAD_ALL = 'events/LOAD_ALL';
+import Cookies from 'js-cookie';
+
+const LOAD_ALL = 'event/LOAD_ALL';
+const ADD_ONE = 'event/ADD_ONE'
 
 const load = eventList => ({
     type: LOAD_ALL,
     eventList,
+});
+
+const addEvent = event => ({
+  type: ADD_ONE,
+  event,
 });
 
 export const getEvents = () => async dispatch => {
@@ -14,20 +22,31 @@ export const getEvents = () => async dispatch => {
     }
   };
 
+export const createEvent = (payload) => async dispatch => {
+  const response = await fetch(`/api/messages/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'XSRF-Token': Cookies.get('XSRF-TOKEN')
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if(response.ok){
+    const event = await response.json()
+    dispatch(addEvent(event))
+    return event
+  }
+}
+
 
 function reducer(state = {}, action) {
   switch (action.type) {
-    case LOAD_ALL: {
-      const allEvents = {};
-      action.eventList.forEach(eventList => {
-        allEvents[eventList.id] = eventList;
-      });
-      return {
-        ...allEvents,
-        ...state,
-        list: action.eventList
-      };
-    }
+    case ADD_ONE:
+      let newState = Object.assign({}, state, { [action.event.id]: action.event });
+      return newState;
+    case LOAD_ALL:
+      return action.eventList;
     default:
       return state;
   }
