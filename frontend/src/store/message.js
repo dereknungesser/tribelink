@@ -1,8 +1,10 @@
-const LOAD = 'message/LOAD';
+import Cookies from 'js-cookie';
+
+const LOAD_ALL = 'message/LOAD_ALL';
 const ADD_ONE = 'message/ADD_ONE'
 
 const load = list => ({
-    type: LOAD,
+    type: LOAD_ALL,
     list,
 });
 
@@ -12,21 +14,23 @@ const addMessage = message => ({
 });
 
 export const getMessages = () => async dispatch => {
-    const response = await fetch(`/api/messages`);
+    const response = await fetch(`/api/messages/`);
 
     if (response.ok) {
-      const list = await response.json();
-      dispatch(load(list));
+      const {messagesList} = await response.json();
+      dispatch(load(messagesList));
     }
   };
 
-export const createMessage = (createdMessage) => async dispatch => {
-  const response = await fetch(`/api/messages`, {
+export const createMessage = (payload) => async dispatch => {
+  console.log(JSON.stringify(payload))
+  const response = await fetch(`/api/messages/`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'XSRF-Token': Cookies.get('XSRF-TOKEN')
     },
-    body: JSON.stringify(createdMessage)
+    body: JSON.stringify(payload),
   });
 
   if(response.ok){
@@ -35,3 +39,17 @@ export const createMessage = (createdMessage) => async dispatch => {
     return message
   }
 }
+
+function reducer(state = {}, action) {
+  switch (action.type) {
+    case ADD_ONE:
+      let newState = Object.assign({}, state, { [action.message.id]: action.message });
+      return newState;
+    case LOAD_ALL:
+      return action.list;
+    default:
+      return state;
+  }
+}
+
+export default reducer;

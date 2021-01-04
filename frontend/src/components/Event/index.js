@@ -1,27 +1,27 @@
-import {fetch} from '../../store/csrf.js'
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getEvents } from '../../store/event'
 
 function Event() {
 
-    const [eventsListed, setEventsListed] = useState([]);
+    const dispatch = useDispatch();
+
+    const eventsListed = useSelector((state) => state.event)
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await fetch("/api/events");
-            setEventsListed(response.data.eventList)
-            console.log(response)
-        }
-        fetchData();
-    }, []);
+        dispatch(getEvents())
+    }, [])
 
     return (
         <>
             <h1>EVENTS PAGE</h1>
             <div>
-                {eventsListed && eventsListed.map(eventList => {
+                {eventsListed && Object.values(eventsListed).map.map(eventList => {
+                    const { User:{username}, body } = eventList
                     return (
                         <div>
-                            <h2>{eventList.body}</h2>
+                            <h1>{body}</h1>
+                            <h2>{username}</h2>
                         </div>
                     )
                 })}

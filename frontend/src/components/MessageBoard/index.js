@@ -1,40 +1,33 @@
-import {fetch} from '../../store/csrf.js'
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createMessage } from '../../store/message'
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createMessage, getMessages } from '../../store/message'
+
+import './messageboard.css';
 
 const MessageBoard = () => {
 
     const dispatch = useDispatch();
-
-    const [messagePost, setMessagePost] = useState([]);
     const [body, setBody] = useState([]);
 
     const updateBody = (e) => setBody(e.target.value);
 
-    const history = useHistory();
+    const userId = useSelector((state) => state.session.user.id)
+    const messages = useSelector((state) => state.messages)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
             body,
+            userId
         };
 
-        let createdMessage = await dispatch(createMessage(payload))
+        dispatch(createMessage(payload))
 
-        if (createdMessage) {
-            history.push(`/messageboard`)
-        }
     }
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await fetch("/api/messages");
-            setMessagePost(response.data.messagesList);
-        }
-        fetchData();
+        dispatch(getMessages())
     }, [])
 
     return (
@@ -46,14 +39,16 @@ const MessageBoard = () => {
                         type="text"
                         placeholder="Create a post..."
                         onChange={updateBody} />
-                    <button type="submit">Post</button>
+                    <button className='button' type="submit">Post</button>
                 </form>
             </div>
             <div>
-                {messagePost && messagePost.map(messagesList => {
+                {messages && Object.values(messages).map(messagesList => {
+                    const { User:{username}, body } = messagesList
                     return (
-                        <div>
-                            <h2>{messagesList.body}</h2>
+                        <div className="postEle">
+                            <p className="userName">{username}</p>
+                            <h2 className="textBody">{body}</h2>
                         </div>
                     )
                 })}

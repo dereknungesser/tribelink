@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Schedule from "./components/Schedule";
 import MessageBoard from "./components/MessageBoard";
+import Homeview from "./components/Homeview"
 import Event from "./components/Event";
 import { getMessages } from './store/message';
 
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/event">
             <Event />
+          </Route>
+          <Route path="/">
+            <Homeview />
           </Route>
         </Switch>
       )}

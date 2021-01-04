@@ -9,6 +9,11 @@
   justify-content: center;
 }
 
+.title {
+  color: white;
+  margin-right: 25px
+}
+
 .links > div {
   display: inline;
   justify-content: center;
