@@ -1,0 +1,53 @@
+.connect > a {
+    background-color: #283C46;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 15%;
+    text-decoration: none;
+    color: white
+}
+
+.games > a {
+    background-color: #283C46;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 15%;
+    text-decoration: none;
+    color: white
+}
+
+.welcome {
+    background-color: #37525f;
+    color: white;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+
+.connectMessage {
+    border: 2px solid #37525f;
+    color: #283C46;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 10px;
+    margin-top: 25px;
+}
+
+.gamesMessage {
+    border: 2px solid #37525f;
+    color: #283C46;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 10px;
+    margin-top: 25px
+}

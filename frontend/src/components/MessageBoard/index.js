@@ -32,8 +32,8 @@ const MessageBoard = () => {
 
     return (
         <>
-            <h1>MESSAGE BOARD PAGE</h1>
-            <div>
+            <h1>MessageBoard</h1>
+            <div className='createPost'>
                 <form onSubmit={handleSubmit}>
                     <textarea
                         type="text"
@@ -43,6 +43,7 @@ const MessageBoard = () => {
                 </form>
             </div>
             <div>
+                <h1 className='recent'>Recent Posts</h1>
                 {messages && Object.values(messages).map(messagesList => {
                     const { User:{username}, body } = messagesList
                     return (

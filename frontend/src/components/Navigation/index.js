@@ -28,6 +28,9 @@ function Navigation({ isLoaded }){
       <>
         <div className="links">
           <h1 className='title'>TribeLink</h1>
+            <div className='home'>
+              <NavLink to='/'>Home</NavLink>
+            </div>
             <div className="messageboard">
               <NavLink to="/messageboard">Message Board</NavLink>
             </div>
