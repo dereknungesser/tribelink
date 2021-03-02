@@ -25,10 +25,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       startTime: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       endTime: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

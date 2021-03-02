@@ -23,7 +23,7 @@ export const getEvents = () => async dispatch => {
   };
 
 export const createEvent = (payload) => async dispatch => {
-  const response = await fetch(`/api/messages/`, {
+  const response = await fetch(`/api/events`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

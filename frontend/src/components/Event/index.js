@@ -6,16 +6,19 @@ function Event() {
 
     const dispatch = useDispatch();
     const [body, setBody] = useState([]);
+    const [name, setName] = useState([]);
 
     const updateBody = (e) => setBody(e.target.value);
+    const updateName = (e) => setName(e.target.value)
 
-    const eventsListed = useSelector((state) => state.event)
+    const eventsListed = useSelector((action) => action.event)
     const userId = useSelector((state) => state.session.user.id)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const payload = {
+            name,
             body,
             userId
         };
@@ -46,11 +49,12 @@ function Event() {
             </div>
             <div>
                 {eventsListed && Object.values(eventsListed).map.map(eventList => {
-                    const { User:{username}, body } = eventList
+                    const { User:{username}, Event:{name, body} } = eventList
                     return (
                         <div>
-                            <h1>{body}</h1>
-                            <h2>{username}</h2>
+                            <h3>{username}</h3>
+                            <h1>{name}</h1>
+                            <h2>{body}</h2>
                         </div>
                     )
                 })}
