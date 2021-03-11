@@ -3,9 +3,9 @@ import Cookies from 'js-cookie';
 const LOAD_ALL = 'event/LOAD_ALL';
 const ADD_ONE = 'event/ADD_ONE'
 
-const load = eventList => ({
+const load = allEvents => ({
     type: LOAD_ALL,
-    eventList,
+    allEvents,
 });
 
 const addEvent = event => ({
@@ -14,7 +14,7 @@ const addEvent = event => ({
 });
 
 export const getEvents = () => async dispatch => {
-    const response = await fetch(`/api/events`);
+    const response = await fetch(`/api/events/`);
 
     if (response.ok) {
       const {eventList} = await response.json();
@@ -43,10 +43,10 @@ export const createEvent = (payload) => async dispatch => {
 function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_ONE:
-      let newState = Object.assign({}, state, { [action.event.id]: action.event });
+      let newState = Object.assign({}, state, { [action.event.id]: action.eventList });
       return newState;
     case LOAD_ALL:
-      return action.eventList;
+      return action.allEvents;
     default:
       return state;
   }

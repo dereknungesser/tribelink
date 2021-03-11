@@ -1,9 +1,28 @@
-.createEvent > form {
+/* .createEvent > form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     padding: 10px;
     margin: auto;
     margin-bottom: 5px;
     width: 15%;
+} */
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.end-time {
+    margin-left: 5px;
+}
+
+.button {
+    width: 500px;
+}
+
+.event-body {
+    resize: none;
+    width: 500px;
 }

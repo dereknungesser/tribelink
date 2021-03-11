@@ -6,9 +6,9 @@ const { Event, User } = require('../../db/models')
 
 
 router.post('/', restoreUser, async (req, res, next) => {
-  const { userId, startTime, endTime, name, body } = req.body
+  const { userId, date, startTime, endTime, name, body } = req.body
   try {
-    const createdEvent = await Event.create({userId, startTime, endTime, name, body})
+    const createdEvent = await Event.create({userId, date, startTime, endTime, name, body})
     const newEvent = await Event.findByPk(createdEvent.id, {include: [User]})
     res.json(newEvent)
   } catch (e) {
@@ -17,10 +17,10 @@ router.post('/', restoreUser, async (req, res, next) => {
 });
 
 router.get('/', restoreUser, async (req, res, next) => {
-  console.log(Event)
   try {
-    const eventList = await Event.findAll()
-    console.log(eventList)
+    const eventList = await Event.findAll({
+      include: [User]
+    })
     res.json({eventList: eventList});
   } catch (e) {
     next(e);

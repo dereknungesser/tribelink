@@ -1,0 +1,21 @@
+.event{
+    margin: auto;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    width: 50%;
+    text-align: center;
+    color: #001b2b;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+.event.textName{
+    margin: auto;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    width: 50%;
+    text-align: center;
+    color: #001b2b;
+    background-color: white;
+    border-collapse: collapse;
+}

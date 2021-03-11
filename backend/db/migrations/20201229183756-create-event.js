@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require("../models");
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Events', {
@@ -23,6 +26,9 @@ module.exports = {
       },
       scheduleId: {
         type: Sequelize.INTEGER
+      },
+      date: {
+        type: sequelize.DATE
       },
       startTime: {
         type: Sequelize.STRING

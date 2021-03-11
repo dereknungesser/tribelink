@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     body: DataTypes.STRING,
     userId: DataTypes.INTEGER,
+    date: DataTypes.DATE,
     scheduleId: DataTypes.INTEGER,
     startTime: DataTypes.STRING,
     endTime: DataTypes.STRING
