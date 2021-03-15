@@ -21,8 +21,8 @@ function LoginForm() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="login-title">Log In</h1>
+      <form className="login-modal" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -37,6 +37,7 @@ function LoginForm() {
             required
           />
         </label>
+        <br></br>
         <label>
           Password
           <input
@@ -46,7 +47,15 @@ function LoginForm() {
             required
           />
         </label>
+        <br></br>
         <button type="submit">Log In</button>
+        <button
+            type='submit'
+            onClick={() => {
+              setCredential('demo@user.io')
+              setPassword('password')
+            }}
+          > Demo </button>
       </form>
     </>
   );

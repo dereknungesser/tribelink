@@ -34,7 +34,17 @@ function Homeview() {
         )
     } else {
         return(
-        <h1>Please sign in!</h1>
+        <>
+            <div className="nolog">
+                <h1 className="tribelink-title">TribeLink is meant to do 3 things:</h1>
+                <ol className="tribelink-list">
+                    <li>Make families and friends still feel together when apart.</li>
+                    <li>Have easy access to virtual services like Amazon Watch Party.</li>
+                    <li>Allow families to create virtual events and posts for their family and friends to see.</li>
+                </ol>
+            </div>
+            <h1 className="please">Please sign-in to get started!</h1>
+        </>
         )
     }
 }

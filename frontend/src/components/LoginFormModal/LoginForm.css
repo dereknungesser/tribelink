@@ -13,6 +13,15 @@
   margin: 5px;
 }
 
+.login-modal {
+  padding: 25px;
+  text-align: right;
+}
+
+.login-title {
+  margin-left: 25px;
+}
+
 .signIn:hover {
   background-color: #76a4bb;
 }
